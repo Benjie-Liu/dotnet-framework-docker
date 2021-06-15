@@ -7,9 +7,9 @@ RUN dism /Online /Quiet /Enable-Feature /All /FeatureName:IIS-WebServerRole {{if
     && dism /Online /Quiet /Disable-Feature /FeatureName:IIS-WebServerManagementTools `
     && del /q "C:\inetpub\wwwroot\*" `
     && for /D %p IN ("C:\inetpub\wwwroot\*") DO rmdir "%p" /s /q `
-    && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe `
+    && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe{{if OS_VERSION_NUMBER != "ltsc2022" || PRODUCT_VERSION = "3.5": `}}
 {{if PRODUCT_VERSION = "3.5"
-:    && %windir%\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0 `
+:    && %windir%\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0{{if OS_VERSION_NUMBER != "ltsc2022": `}}
 }}{{if OS_VERSION_NUMBER != "ltsc2022":    && %windir%\Microsoft.NET\Framework64\v4.0.30319\ngen update `
     && %windir%\Microsoft.NET\Framework\v4.0.30319\ngen update}}
 {{if PRODUCT_VERSION != "3.5"

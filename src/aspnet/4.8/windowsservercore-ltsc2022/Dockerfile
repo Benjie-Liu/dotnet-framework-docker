@@ -7,7 +7,7 @@ RUN dism /Online /Quiet /Enable-Feature /All /FeatureName:IIS-WebServerRole /Fea
     && dism /Online /Quiet /Disable-Feature /FeatureName:IIS-WebServerManagementTools `
     && del /q "C:\inetpub\wwwroot\*" `
     && for /D %p IN ("C:\inetpub\wwwroot\*") DO rmdir "%p" /s /q `
-    && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe `
+    && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe
 
 
 # Install Roslyn compilers

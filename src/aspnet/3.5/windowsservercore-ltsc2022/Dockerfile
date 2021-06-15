@@ -8,7 +8,7 @@ RUN dism /Online /Quiet /Enable-Feature /All /FeatureName:IIS-WebServerRole /Fea
     && del /q "C:\inetpub\wwwroot\*" `
     && for /D %p IN ("C:\inetpub\wwwroot\*") DO rmdir "%p" /s /q `
     && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe `
-    && %windir%\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0 `
+    && %windir%\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0
 
 
 EXPOSE 80
