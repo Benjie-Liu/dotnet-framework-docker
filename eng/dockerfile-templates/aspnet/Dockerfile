@@ -10,8 +10,8 @@ RUN dism /Online /Quiet /Enable-Feature /All /FeatureName:IIS-WebServerRole {{if
     && curl -fSLo ServiceMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe `
 {{if PRODUCT_VERSION = "3.5"
 :    && %windir%\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0 `
-}}    && %windir%\Microsoft.NET\Framework64\v4.0.30319\ngen update `
-    && %windir%\Microsoft.NET\Framework\v4.0.30319\ngen update
+}}{{if OS_VERSION_NUMBER != "ltsc2022":    && %windir%\Microsoft.NET\Framework64\v4.0.30319\ngen update `
+    && %windir%\Microsoft.NET\Framework\v4.0.30319\ngen update}}
 {{if PRODUCT_VERSION != "3.5"
 :
 # Install Roslyn compilers
